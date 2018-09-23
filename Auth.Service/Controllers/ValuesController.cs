@@ -21,8 +21,8 @@ namespace Auth.Service.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            _provider.ProvideSecurityToken();
-            return new string[] { "value1", "value2" };
+            return Ok(new { token = _provider.GrantSecurityToken() });
+            //return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5
