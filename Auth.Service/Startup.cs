@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Auth.Service.Data;
+using Auth.Service.Infrastructure;
+using Auth.Service.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,6 +36,8 @@ namespace Auth.Service
 
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<AuthServiceDbContext>();
+
+            services.AddTransient<ITokenProvider, JWTokenProvider>();
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Auth.Service.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Auth.Service.Controllers
@@ -10,10 +11,17 @@ namespace Auth.Service.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly ITokenProvider _provider;
+
+        public ValuesController(ITokenProvider provider)
+        {
+            _provider = provider;
+        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            _provider.ProvideSecurityToken();
             return new string[] { "value1", "value2" };
         }
 
