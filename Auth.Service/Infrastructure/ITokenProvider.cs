@@ -7,6 +7,6 @@ namespace Auth.Service.Infrastructure
 {
     public interface ITokenProvider
     {
-        void ProvideSecurityToken();
+        string GrantSecurityToken();
     }
 }

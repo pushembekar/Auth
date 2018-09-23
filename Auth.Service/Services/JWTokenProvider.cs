@@ -12,7 +12,7 @@ namespace Auth.Service.Services
 {
     public class JWTokenProvider : ITokenProvider
     {
-        public void ProvideSecurityToken()
+        public string GrantSecurityToken()
         {
             var claims = new[]
             {
@@ -28,7 +28,7 @@ namespace Auth.Service.Services
                     expires: DateTime.Now.AddMinutes(30),
                     signingCredentials: creds);
 
-            var tokenvalue = new JwtSecurityTokenHandler().WriteToken(token);
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }
